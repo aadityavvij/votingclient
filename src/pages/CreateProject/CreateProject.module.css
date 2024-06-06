@@ -1,0 +1,16 @@
+.createProjectForm{
+    margin: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.createProjectForm input{
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+    border-radius: 0.5em;
+}
+
+.createProjectFormDiv{
+    margin-bottom: 20px;
+}
