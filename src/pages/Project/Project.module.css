@@ -1,0 +1,28 @@
+.projectWrap{
+    margin: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.projectWrap h1{
+    font-weight: 500;
+}
+.projectWrap h2{
+    font-weight: 400;
+}
+.projectDiv{
+    margin-bottom: 30px;
+}
+.castVoteDiv{
+    max-width: 400px;
+}
+.voteFormDiv{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    align-items: center;
+}
+.errorp{
+    color: rgb(255, 82, 82);
+    margin-top: 13px;
+    text-align: left;
+}
