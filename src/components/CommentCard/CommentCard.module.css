@@ -1,0 +1,16 @@
+.commentWrap{
+    background-color: rgb(57, 57, 57);
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
+    h5{
+        font-weight: 400;
+        color: #7b7b7b;
+    }
+}
+
+.commentDiv{
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
