@@ -1,5 +1,5 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import {Icon} from 'leaflet'
 import 'leaflet/dist/leaflet.css';
 import Navbar from '../../components/Navbar/Navbar';
@@ -8,14 +8,12 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Styles from './CreateProject.module.css';
 import PlaceIcon from '../../assets/marker.svg';
-import { useNavigate } from 'react-router-dom';
 
 const CreateProject = () => {
   const center = {
     lat: 30.76,
     lng: 76.78,
   };
-  const navigate = useNavigate();
   const [buttonText, setButtonText] = useState("Create");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
