@@ -4,7 +4,7 @@
     color: #dcdcdc;
     font-weight: 600;
     width: 100%;
-    z-index: 100;
+    z-index: 10000;
     height: 65px;
     display: flex;
     align-items: center;
