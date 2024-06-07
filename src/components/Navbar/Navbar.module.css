@@ -59,6 +59,13 @@ nav ul li a:hover {
     color: #a4a4a4;
 }
 
+.logoNav{
+    margin-right: 30px;
+    margin-left: 30px;
+    cursor: pointer;
+    
+}
+
 @media screen and (max-width:600px) {
     .mobileBtn {
         display: block;

@@ -3,6 +3,7 @@ import NavbarStyles from './Navbar.module.css';
 import Hamburger from 'hamburger-react'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.svg';
 
 function Navbar() {
     const [user, setUser] = useState(null);
@@ -50,7 +51,9 @@ function Navbar() {
 
     return (
         <div className={`${NavbarStyles.navbar} ${isActive ? NavbarStyles.active : ''}`}>
+            <img height="100px" className={NavbarStyles.logoNav} src={logo}/>
             <nav>
+                
                 <ul className={NavbarStyles.desktopNav}>
                     <div>
                         <li><Link to='/'>Projects</Link></li>
