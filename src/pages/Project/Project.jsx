@@ -169,7 +169,14 @@ const Project = () => {
                         </div>
                         <div className={Styles.projectDiv}>
                             <h1>Location</h1>
-                            <p>{project.location}</p>
+                            <iframe 
+                                width="700" 
+                                height="400" 
+                                frameborder="0"
+                                className={Styles.locationFrame}
+                                src={project.location}
+                            >
+                            </iframe>
                         </div>
                         <div className={Styles.projectDiv}>
                             <h1>Votes</h1>

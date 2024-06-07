@@ -24,7 +24,7 @@ const ProjectCard = (props) => {
         <div onClick={handleClick} className={Styles.outerWrap}>
             <div className={Styles.innerWrap}>
                 <h2>{title}</h2>
-                <p>{desc}</p>
+                {/* <p>{desc}</p> */}
             </div>
         </div>
     </div>

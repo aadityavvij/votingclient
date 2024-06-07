@@ -8,20 +8,24 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Styles from './CreateProject.module.css';
 import PlaceIcon from '../../assets/marker.svg';
-import markerIconPng from "leaflet/dist/images/marker-icon.png"
+import { useNavigate } from 'react-router-dom';
 
 const CreateProject = () => {
   const center = {
     lat: 30.76,
     lng: 76.78,
   };
-
+  const navigate = useNavigate();
   const [buttonText, setButtonText] = useState("Create");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [position, setPosition] = useState(center);
+  const [positionUrl, setPositionUrl] = useState(`https://www.google.com/maps/place/${center.lat},${center.lng}`);
+  const [error, setError] = useState("");
 
-  
+  useEffect(() => {
+    setPositionUrl(`https://maps.google.com/maps?q=${position.lat},${position.lng}&hl=es;z=14&amp&output=embed`)
+}, [position]);
 
   const markerRef = useRef(null);
   const eventHandlers = useMemo(
@@ -37,16 +41,33 @@ const CreateProject = () => {
     []
   );
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const projectData = {
-      title,
-      description,
-      location: position,
-    };
-    // Send projectData to your API
-    console.log(projectData);
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setButtonText("Creating");
+    try {
+        const response = await fetch(`https://localhost:7192/api/project`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                title: title,
+                description: description,
+                location: positionUrl
+            }),
+            credentials: 'include'
+        });
+        if (response.ok) {
+            window.location.href = `/`;
+        }
+        else {
+          console.log(response);
+          setError("Either you are logged out or fields are empty");
+        }
+    } catch (error) {
+        setError("Network Error");
+    } finally {
+        setButtonText("Create");
+    }
+};
 
   return (
     <>
@@ -89,6 +110,7 @@ const CreateProject = () => {
             backgroundColor: '#19695b',
           }
         }}>{buttonText}</Button>
+        <p className={Styles.errorp}>{error}</p>
       </form>
     </>
   );
