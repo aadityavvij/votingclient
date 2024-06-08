@@ -1,8 +1,8 @@
-import React from 'react'
-import { useState } from 'react';
-import Navbar from '../../components/Navbar/Navbar'
-import Styles from './LoginRegister.module.css'
-import Button from '@mui/material/Button';
+import React from "react";
+import { useState } from "react";
+import Navbar from "../../components/Navbar/Navbar";
+import Styles from "./LoginRegister.module.css";
+import Button from "@mui/material/Button";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -11,28 +11,25 @@ function Register() {
   const [error, setError] = useState("");
   const [buttonText, setButtonText] = useState("Register");
 
-
   const register = async (e) => {
     setButtonText("Registering");
     e.preventDefault();
     try {
       if (confirmPassword !== password) {
         setError("Passwords do not match");
-      }
-      else {
+      } else {
         const response = await fetch("https://localhost:7192/register", {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: email,
-            password: password
+            password: password,
           }),
-          credentials: 'include'
+          credentials: "include",
         });
         if (response.ok) {
           login();
-        }
-        else{
+        } else {
           setError("Email/password format not correct");
         }
       }
@@ -45,28 +42,30 @@ function Register() {
 
   const login = async () => {
     setButtonText("Logging in");
-    try{
-      const response = await fetch("https://localhost:7192/login?useCookies=true", {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+    try {
+      const response = await fetch(
+        "https://localhost:7192/login?useCookies=true",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-              email: email,
-              password: password
+            email: email,
+            password: password,
           }),
-          credentials: 'include'
-      });
-      if(response.ok){
-          window.location.href = '/';
+          credentials: "include",
+        },
+      );
+      if (response.ok) {
+        window.location.href = "/";
+      } else {
+        setError("Some Error Occurred");
       }
-      else{
-          setError("Some Error Occurred");
-      }
-    } catch(e) {
+    } catch (e) {
       setError("Network Error");
     } finally {
       setButtonText("Register");
     }
-  }
+  };
 
   return (
     <>
@@ -77,7 +76,6 @@ function Register() {
             <h1>Register</h1>
           </div>
           <div className={Styles.formFields}>
-
             <form onSubmit={register}>
               <div className={Styles.formRow}>
                 <div className={Styles.inputDiv} id="loginEmailDiv">
@@ -116,22 +114,32 @@ function Register() {
                     onChange={(event) => setConfirmPassword(event.target.value)}
                   />
                 </div>
-
-
               </div>
 
-              <Button variant="contained" type='submit' disableElevation sx={{
-                marginTop: '20px', backgroundColor: '#28a08c', color: '#dcdcdc', width: '100%', fontSize: '1.4rem', '&:hover': {
-                  backgroundColor: '#19695b',
-                }
-              }}>{buttonText}</Button>
+              <Button
+                variant="contained"
+                type="submit"
+                disableElevation
+                sx={{
+                  marginTop: "20px",
+                  backgroundColor: "#28a08c",
+                  color: "#dcdcdc",
+                  width: "100%",
+                  fontSize: "1.4rem",
+                  "&:hover": {
+                    backgroundColor: "#19695b",
+                  },
+                }}
+              >
+                {buttonText}
+              </Button>
               <p className={Styles.errorp}>{error}</p>
             </form>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Register
+export default Register;
